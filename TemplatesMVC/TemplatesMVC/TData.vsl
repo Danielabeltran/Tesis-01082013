@@ -1,0 +1,140 @@
+#*
+                    contexto.put("$nombre", nombreClase);     
+                    contexto.put("$tabla", tablaClase);     
+                    contexto.put("$campo", columnasClase); 
+                    contexto.put("$type", tipocolumnasClase); 
+                    contexto.put("$Foreign", foreignClase); 
+*#
+package USBBOGEDUData;
+
+import USBBOGEDUEntities.$tabla;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Universidad de Sanbuenaventura sede Bogota
+ */
+
+#set($spe2 = " ,")
+#set($spe = " ")
+
+public class $tabla\DAO {
+
+
+public void create($tabla a) {
+        
+        // Crea la conexion a la base de datos $nombre
+        ConexionDB database = new ConexionDB();
+        database.makeConnection();
+        
+        try{
+            // Genera la inserción en la tabla
+            String formato = "insert into $tabla($Acolumnas) values($sigla)"; 
+            String sql = String.format(formato, $Concatenado3);
+            
+            // Guarda los datos en la base de datos $nombre
+            database.nonQuery(sql);
+            
+        }catch(Exception e){
+            
+        }
+        
+    }
+
+
+
+    /**
+     * Obtiene la lista de estudiantes
+     * @return lista de estudiantes
+     */
+    public List<$tabla> getAll(){
+
+            // Crea la conexion a la base de datos $nombre
+        ConexionDB database = new ConexionDB();
+        database.makeConnection();
+
+            // Crea el objeto resultado
+            List<$tabla> lista = new ArrayList<$tabla>();
+
+            try{
+
+            // Ejecuta la sentencia en la BD
+                ResultSet resultado = database.query("select * from $tabla");
+
+            // Recorre el resultado para transformar a entidades
+            while (resultado.next()) {
+
+            // Obtiene los datos del registro actual
+
+        #foreach( $Campo in $Concatenado1 )
+        $Campo
+        #end
+            // crea una entidad estudiante
+            $tabla a = new $tabla(); 
+
+        #foreach( $Campo in $Concatenado2 )
+        $Campo
+        #end
+            // Agrega la entidad a la lista
+            lista.add(a);
+                }
+
+            }catch(Exception e){
+            }
+
+            return lista;
+        }
+
+
+ public void update($tabla a) {
+        
+      // Crea la conexion a la base de datos $nombre
+        ConexionDB database = new ConexionDB();
+        database.makeConnection();
+        
+        try{
+            
+            // Crea la sentencia de actualizacion en la tabla $tabla
+             String formato = "update $tabla set $Concatenado4 where id='%s'";
+            String sql = String.format(formato, $Concatenado3);
+            
+            
+            // Ejecuta la actualización
+            database.nonQuery(sql);
+            
+            
+            
+            
+        }catch(Exception e){
+            
+        }
+        
+    }
+
+public void delete$tabla(int id) {
+  
+// Crea la conexion a la base de datos $nombre
+        ConexionDB database = new ConexionDB();
+        database.makeConnection();
+        
+        try{
+            
+            // Crea la sentencia de actualizacion en la base de datos
+            String formato = "delete from $tabla where id = %s";
+            String sql = String.format(formato, id);
+            
+            // Ejecuta la actualización
+            database.nonQuery(sql);
+            
+            
+            
+            
+        }catch(Exception e){
+            
+        }
+    }
+
+}
+

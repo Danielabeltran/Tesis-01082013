@@ -1,0 +1,26 @@
+## Velocity Template.
+package USBBOGEDUEntities;
+
+public class $Tabla 
+{
+
+  
+        #foreach($Campo in $Ttypecampo)
+                 private $Campo;
+        #end 
+        
+        public $Tabla() // constructor 
+            { 
+            #foreach( $Campo in $Concatenado2 )
+               $Campo;// " " varian segun el tipo de dato
+            #end
+
+            }
+
+        #foreach( $Campo in $Concatenado1 )
+        public void set_$Campo
+        #end
+
+}
+
+

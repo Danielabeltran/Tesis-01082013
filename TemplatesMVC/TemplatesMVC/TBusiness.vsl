@@ -1,0 +1,26 @@
+package USBBOGEDUBusiness;
+
+
+import USBBOGEDUData.$tabla DAO;
+import USBBOGEDUEntities.$tabla;
+import java.util.List;
+
+public class $tabla BO {
+
+   
+    
+    /**
+     * Obtiene la lista de $tabla
+     * @return lista de $tabla
+     */
+    public List<$tabla> getAll(){
+        
+        // Crea un objeto de datos
+        $tabla DAO dao = new $tabla DAO();
+        
+        // Obtiene la lista de $tabla
+        List<$tabla> lista = dao.getAll();
+        
+        // Retorna la lista anterior
+        return lista;
+    }
